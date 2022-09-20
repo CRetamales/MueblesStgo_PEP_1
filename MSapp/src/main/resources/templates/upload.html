@@ -1,10 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+  <link rel="icon" href="MueblesStgo.ico">
+  <meta charset="UTF-8">
   <title>MueblesStgo - Subida Archivo</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 </head>
 <body>
+<!-- Navbar -->
+<!-- usar el navbar.html -->
+<fragment th:replace="/components/navbar.html"></fragment>
+
 
 <section class="my-5">
   <div class="container">
@@ -12,7 +18,7 @@
       <div class="col-md-8 mx-auto">
         <h2>Subida de Marca de Reloj</h2>
         <p th:text="${message}" th:if="${message ne null}" class="alert alert-primary"></p>
-        <form method="post" th:action="@{/upload}" enctype="multipart/form-data">
+        <form method="post" th:action="@{/marcas/upload}" enctype="multipart/form-data">
           <div class="form-group">
             <input type="file" name="file" class="form-control-file">
           </div>
@@ -23,5 +29,9 @@
   </div>
 </section>
 
+<!-- footer -->
+<!-- Un footer fondo oscuro con texto blanco -->
+<!-- usar el footer.html -->
+<fragment th:replace="/components/footer.html"></fragment>
 </body>
 </html>
