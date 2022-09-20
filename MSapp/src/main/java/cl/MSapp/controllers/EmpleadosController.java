@@ -6,6 +6,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -16,20 +18,24 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-@RestController
+
 @RequestMapping(value = "/empleados")
+@Controller
 public class EmpleadosController {
 
     @Autowired
     private EmpleadosService empleadosService;
-
+    
     @GetMapping
-    public ResponseEntity<List<Empleados>> listAllEmpleados(){
+    public String listAllEmpleados(Model model){
         List<Empleados> empleados = empleadosService.listAllEmpleados();
         if(empleados.isEmpty()){
-            return ResponseEntity.noContent().build();
+            ResponseEntity.noContent().build();
+            return "empleados";
         }
-        return ResponseEntity.ok(empleados);
+        ResponseEntity.ok(empleados);
+        model.addAttribute("empleados", empleados);
+        return "empleados";
     }
 
     @GetMapping(value = "/{id}")
