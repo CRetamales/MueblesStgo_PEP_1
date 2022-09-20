@@ -25,7 +25,7 @@ public class EmpleadosController {
 
     @Autowired
     private EmpleadosService empleadosService;
-    
+
     @GetMapping
     public String listAllEmpleados(Model model){
         List<Empleados> empleados = empleadosService.listAllEmpleados();
