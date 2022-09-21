@@ -33,5 +33,5 @@ public class Horas {
 
     @Column(name = "categoria")
     private String categoria;
-    
+
 }
