@@ -131,6 +131,36 @@ public class MarcasController {
         return ResponseEntity.status(HttpStatus.CREATED).body(marcasCreate);
     }
 
+    @PutMapping(value = "/marcas/{id}")
+    public ResponseEntity<Marcas> updateMarcas(@PathVariable("id") Long id, @RequestBody Marcas marcas){
+        marcas.setId(id);
+        Marcas marcasDB = marcasService.updateMarcas(marcas);
+        if(marcasDB == null){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(marcasDB);
+    }
+
+    @DeleteMapping(value = "/marcas/{id}")
+    public ResponseEntity<Marcas> deleteMarcas(@PathVariable("id") Long id){
+        Marcas marcasDelete = marcasService.getMarcasById(id);
+        if(marcasDelete == null){
+            return ResponseEntity.notFound().build();
+        }
+        marcasService.deleteMarcas(id);
+        return ResponseEntity.ok(marcasDelete);
+    }
+
+    @GetMapping(value = "/marcas/rut/{rut}")
+    public ResponseEntity<Marcas> findByRut(@PathVariable("rut") String rut){
+        Marcas marcas = marcasService.findMarcasByRut(rut);
+        if(marcas == null){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(marcas);
+    }
+
+
     private String formatMessage(BindingResult result) {
         List<Map<String, String>> errors = result.getFieldErrors().stream()
                 .map(err -> {
