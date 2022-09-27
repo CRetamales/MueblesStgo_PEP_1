@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <link rel="icon" href="/MueblesStgo.ico">
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <title>MueblesStgo - Planilla de sueldos</title>
+</head>
+<body>
+<!-- Navbar -->
+<fragment th:replace="/components/navbar.html"></fragment>
+
+
+<!-- Contenido -->
+<!-- planilla de sueldos -->
+<div class="container" style="margin-bottom: 20px">
+  <div class="row">
+    <div class="col-12" style="margin-top: 20px; margin-bottom: 20px">
+      <h1>Planilla de sueldos</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <table class="table table-dark">
+        <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Rut</th>
+          <th scope="col">Nombre Empleado</th>
+          <th scope="col">Categoria</th>
+          <th scope="col">Años de Servicio Empresa</th>
+          <th scope="col">Sueldo Fijo Mensual</th>
+          <th scope="col">Monto Bonificación Años de Servicio</th>
+          <th scope="col">Monto Horas Extras</th>
+          <th scope="col">Monto Descuentos</th>
+          <th scope="col">Sueldo Bruto</th>
+          <th scope="col">Cotización Previsional</th>
+          <th scope="col">Cotización Salud</th>
+          <th scope="col">Monto Sueldo Final</th>
+        </thead>
+        <tbody>
+        <tr th:each="reporte : ${reportes}">
+            <th scope="row" th:text="${reporte.id}"></th>
+            <td th:text="${reporte.rut}"></td>
+            <td th:text="${reporte.nombre_empleado}"></td>
+            <td th:text="${reporte.categoria}"></td>
+            <td th:text="${reporte.anho_empresa}"></td>
+            <td th:text="${reporte.sueldo_fijo}"></td>
+            <td th:text="${reporte.bonificacion_anho}"></td>
+            <td th:text="${reporte.horas_extras}"></td>
+            <td th:text="${reporte.descuentos}"></td>
+            <td th:text="${reporte.sueldo_bruto}"></td>
+            <td th:text="${reporte.cotizacion_previsional}"></td>
+            <td th:text="${reporte.cotizacion_salud}"></td>
+            <td th:text="${reporte.sueldo_final}"></td>
+          <!-- Botones de Editar y Eliminar -->
+          <td>
+            <a href="#" class="btn btn-primary">Editar</a>
+            <a href="#" class="btn btn-danger">Eliminar</a>
+          </td>
+        </tr>
+        </tbody>
+
+      </table>
+    </div>
+  </div>
+</div>
+<!-- Fin Contenido -->
+
+
+<!-- Footer -->
+<fragment th:replace="/components/footer.html"></fragment>
+
+</body>
+</html>
+<style>
+  th {
+    text-align: center;
+    vertical-align: center;
+  }
+</style>
