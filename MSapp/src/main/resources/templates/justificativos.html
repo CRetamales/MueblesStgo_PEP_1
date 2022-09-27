@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="cn" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <link rel="icon" href="/MueblesStgo.ico">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>MueblesStgo - Justificativos</title>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+</head>
+<!-- Navbar -->
+<!-- usar el navbar.html -->
+<fragment th:replace="/components/navbar.html"></fragment>
+<body>
+<div class="container">
+
+    <h1 class="py-5">Justificativos</h1>
+    <form method="post" th:action="@{/justificativos/}" th:object="${justificativo}" class="col card p-3 mb-5">
+        <div class="form-group">
+            <label for="rut">Rut</label>
+            <input id="rut" placeholder="Ingrese Rut" required type="text" th:field="*{rut}" class="form-control"/>
+        </div>
+        <div class="form-group">
+            <label for="datepicker">Fecha</label>
+            <input id="datepicker" placeholder="Ingrese Fecha" type="text" th:field="*{fecha}" class="form-control"/>
+        </div>
+        <div class="form-group">
+            <label for="categoria">Categoria</label>
+            <input id="categoria" placeholder="Ingrese Categoria" required type="text" th:field="*{categoria}" class="form-control"/>
+        </div>
+        <input type="submit" class="btn btn-primary" value="Agregar Justificativo">
+    </form>
+    <table class="table table-striped table-bordered">
+        <tr>
+            <th>ID</th>
+            <th>Rut</th>
+            <th>Fecha</th>
+            <th>Categoria</th>
+        </tr>
+        <tr th:if="${#lists.isEmpty(justificativos)}">
+            <td colspan="5">No hay justificativos. Agregue algunas...!</td>
+        </tr>
+        <tr th:each="justificativo : ${justificativos}">
+            <td th:text="${justificativo.id}"></td>
+            <td th:text="${justificativo.rut}"></td>
+            <td th:text="${justificativo.fecha}"></td>
+            <td th:text="${justificativo.categoria}"></td>
+        </tr>
+    </table>
+</div>
+
+<!-- usar el footer.html -->
+<fragment th:replace="/components/footer.html"></fragment>
+
+</body>
+</html>
+
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<script>
+    $( function() {
+        $( "#datepicker" ).datepicker({
+            dateFormat: "yy/mm/dd"
+        });
+    } );
+</script>
