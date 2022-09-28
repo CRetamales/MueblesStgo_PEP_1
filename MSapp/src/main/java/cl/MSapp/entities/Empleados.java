@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.text.SimpleDateFormat;
 
 @Entity(name = "Empleados")
 @Table(name = "empleados")
@@ -46,4 +47,16 @@ public class Empleados {
     @Column(name = "fecha_ingreso")
     private String fecha_ingreso;
 
+    //Otras funciones complementarias
+
+    public String getNombreCompleto(){
+        return this.nombres + " " + this.apellidos;
+    }
+
+    public int getAnhoServicio(){
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy");
+        int anhoActual = Integer.parseInt(formatter.format(new java.util.Date()));
+        int anhoIngreso = Integer.parseInt(this.fecha_ingreso.substring(0,4));
+        return anhoActual - anhoIngreso;
+    }
 }

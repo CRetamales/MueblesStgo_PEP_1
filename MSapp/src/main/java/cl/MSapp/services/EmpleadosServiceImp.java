@@ -55,9 +55,17 @@ public class EmpleadosServiceImp implements EmpleadosService {
         return;
     }
 
+    //OTROS METODOS
     @Override
     public Empleados findEmpleadosByRut(String rut) {
         return empleadosRepository.findByRut(rut).get(0);
+    }
+
+    //METODO PARA CALCULAR AÑOS DE SERVICIO
+    @Override
+    public int anhosServicio(String rut) {
+        Empleados empleado = findEmpleadosByRut(rut);
+        return empleado.getAnhoServicio();
     }
 
 }

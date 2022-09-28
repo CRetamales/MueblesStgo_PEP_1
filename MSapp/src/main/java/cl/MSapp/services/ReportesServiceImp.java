@@ -1,5 +1,6 @@
 package cl.MSapp.services;
 
+import cl.MSapp.entities.Empleados;
 import cl.MSapp.entities.Reportes;
 import cl.MSapp.repositories.ReportesRepository;
 import lombok.RequiredArgsConstructor;
@@ -15,8 +16,22 @@ public class ReportesServiceImp implements ReportesService {
     @Autowired
     private ReportesRepository reportesRepository;
 
+    @Autowired
+    private EmpleadosService empleadosService;
+
     @Override
     public List<Reportes> listAllReportes() {
+        List<Reportes> reportes = reportesRepository.findAll();
+
+        //Por cada reporte en la lista de reportes se le asigna los datos del empleado
+        for (Reportes reporte : reportes) {
+            Empleados empleado = empleadosService.findEmpleadosByRut(reporte.getRut());
+            reporte.setNombre_empleado(empleado.getNombres()+" "+empleado.getApellidos());
+            reporte.setCategoria(empleado.getCategoria());
+            //Años de servicio a partir de la fecha de ingreso
+            reporte.setAnho_empresa(empleadosService.anhosServicio(reporte.getRut()));
+
+        }
         return reportesRepository.findAll();
     }
 
