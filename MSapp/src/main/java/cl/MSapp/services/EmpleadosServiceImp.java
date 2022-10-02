@@ -2,6 +2,7 @@ package cl.MSapp.services;
 
 import cl.MSapp.entities.Empleados;
 import cl.MSapp.repositories.EmpleadosRepository;
+import cl.MSapp.Complementarias;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -65,7 +66,8 @@ public class EmpleadosServiceImp implements EmpleadosService {
     @Override
     public int anhosServicio(String rut) {
         Empleados empleado = findEmpleadosByRut(rut);
-        return empleado.getAnhoServicio();
+        Complementarias complementarias = new Complementarias();
+        return complementarias.getCantidadAnhos_Actual(empleado.getFecha_ingreso());
     }
 
 }

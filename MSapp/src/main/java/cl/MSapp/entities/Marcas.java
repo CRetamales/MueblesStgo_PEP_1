@@ -45,4 +45,75 @@ public class Marcas {
     @Column(name = "rut")
     private String rut;
 
+    /* Otros metodos */
+
+    public int getHoras() {
+        return Integer.parseInt(hora.substring(0, 2));
+    }
+
+    public int getMinutos() {
+        return Integer.parseInt(hora.substring(3, 5));
+    }
+
+    /**
+     * Funcion que dado marca de entrada y la marca de salida calcula la cantidad de horas trabajadas
+     * @param entrada - Marca de entrada
+     * @param salida - Marca de salida
+     * @return - Cantidad de horas trabajadas
+     */
+    public static int calcularHorasTrabajadas(Marcas entrada, Marcas salida) {
+        int horaEntradaInt = entrada.getHoras();
+        int horaSalidaInt =  salida.getHoras();
+        int minutosEntradaInt = entrada.getMinutos();
+        int minutosSalidaInt =  salida.getMinutos();
+        int horasTrabajadas = horaSalidaInt - horaEntradaInt;
+        int minutosTrabajados = minutosSalidaInt - minutosEntradaInt;
+        if (minutosTrabajados < 0) {
+            horasTrabajadas -= 1;
+        }
+        return horasTrabajadas;
+    }
+
+    /**
+     * Funcion que dado la marca de entrada y la marca de salida calcula la cantidad de horas extras trabajadas
+     * @param entrada - Marca de entrada
+     * @param salida - Marca de salida
+     * @return - Cantidad de horas extras trabajadas
+     */
+    public static int calcularHorasExtras(Marcas entrada, Marcas salida) {
+        int horaEntradaInt = entrada.getHoras();
+        int horaSalidaInt = salida.getHoras();
+        int minutosEntradaInt = entrada.getMinutos();
+        int minutosSalidaInt = salida.getMinutos();
+        int horasTrabajadas = horaSalidaInt - horaEntradaInt;
+        int minutosTrabajados = minutosSalidaInt - minutosEntradaInt;
+        if (minutosTrabajados < 0) {
+            horasTrabajadas -= 1;
+        }
+        if (horasTrabajadas > 10) {
+            return horasTrabajadas - 10;
+        } else {
+            return 0;
+        }
+    }
+
+    /**
+     * Funcion que dado la marca de entrada determina cuantos minutos se ha retrasado
+     * @param entrada - Marca de entrada
+     * @return - Cantidad de minutos de retraso
+     */
+    public static int calcularRetraso(Marcas entrada) {
+        int horaEntradaInt = entrada.getHoras();
+        int minutosEntradaInt = entrada.getMinutos();
+        int minutosRetraso = 0;
+        if (horaEntradaInt > 8) {
+            minutosRetraso += (horaEntradaInt - 8) * 60;
+        }
+        if (minutosEntradaInt > 0) {
+            minutosRetraso += minutosEntradaInt;
+        }
+        return minutosRetraso;
+    }
+
+
 }

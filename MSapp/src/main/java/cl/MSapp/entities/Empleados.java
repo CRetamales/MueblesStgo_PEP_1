@@ -53,10 +53,4 @@ public class Empleados {
         return this.nombres + " " + this.apellidos;
     }
 
-    public int getAnhoServicio(){
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy");
-        int anhoActual = Integer.parseInt(formatter.format(new java.util.Date()));
-        int anhoIngreso = Integer.parseInt(this.fecha_ingreso.substring(0,4));
-        return anhoActual - anhoIngreso;
-    }
 }
