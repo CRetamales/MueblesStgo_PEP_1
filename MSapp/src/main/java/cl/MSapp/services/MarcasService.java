@@ -19,5 +19,5 @@ public interface MarcasService {
     public void deleteMarcas(Long id);
 
     //OTHERS
-    public Marcas findMarcasByRut(String rut);
+    public List<Marcas> findMarcasByRut(String rut);
 }

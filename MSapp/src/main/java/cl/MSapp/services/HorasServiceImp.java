@@ -27,7 +27,18 @@ public class HorasServiceImp implements HorasService {
 
     @Override
     public Horas createHoras(Horas horas) {
-        return horasRepository.save(horas);
+        //Si los parametros son nulos, no se crea
+        System.out.println(horas.getRut() + " " + horas.getFecha() + " " + horas.getCategoria());
+        if (horas.getFecha() != null && horas.getRut() != null && horas.getCategoria() != null) {
+            //Si la fecha tiene el formato, se crea (YYYY/MM/DD)
+            if (horas.getFecha().matches("\\d{4}/\\d{2}/\\d{2}")) {
+                //Si la categoria es A,B o C, se crea
+                if (horas.getCategoria().matches("^[A-C]$")) {
+                    return horasRepository.save(horas);
+                }
+            }
+        }
+        return null;
     }
 
     @Override

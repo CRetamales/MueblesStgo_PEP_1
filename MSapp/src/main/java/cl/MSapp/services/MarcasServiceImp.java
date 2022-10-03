@@ -53,7 +53,7 @@ public class MarcasServiceImp implements MarcasService {
     }
 
     @Override
-    public Marcas findMarcasByRut(String rut) {
+    public List<Marcas> findMarcasByRut(String rut) {
         return marcasRepository.findByRut(rut);
     }
 }

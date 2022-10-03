@@ -20,11 +20,6 @@ public class HorasController {
     @GetMapping
     public String listAllHoras(Model model){
         List<Horas> horas = horasService.listAllHoras();
-        /*
-        if(horas.isEmpty()){
-            ResponseEntity.noContent().build();
-            return "horas";
-        }*/
         ResponseEntity.ok(horas);
         model.addAttribute("horas", horas);
         model.addAttribute("hora",new Horas());
