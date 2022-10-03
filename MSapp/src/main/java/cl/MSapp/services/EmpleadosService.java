@@ -20,4 +20,7 @@ public interface EmpleadosService {
 
     //OTHERS
     public Empleados findEmpleadosByRut(String rut);
+
+    //Años de servicio de un empleado
+    public int anhosServicio(String rut);
 }

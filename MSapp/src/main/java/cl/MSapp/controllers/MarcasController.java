@@ -100,9 +100,9 @@ public class MarcasController {
 
                 if(partes.length == 3){
                     Marcas marcas = new Marcas();
-                    marcas.setRut(partes[0]);
-                    marcas.setFecha(partes[1]);
-                    marcas.setHora(partes[2]);
+                    marcas.setFecha(partes[0]);
+                    marcas.setHora(partes[1]);
+                    marcas.setRut(partes[2]);
                     marcasService.createMarcas(marcas);
                 }
                 else {
@@ -153,11 +153,11 @@ public class MarcasController {
 
     @GetMapping(value = "/marcas/rut/{rut}")
     public ResponseEntity<Marcas> findByRut(@PathVariable("rut") String rut){
-        Marcas marcas = marcasService.findMarcasByRut(rut);
+        List<Marcas> marcas = marcasService.findMarcasByRut(rut);
         if(marcas == null){
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(marcas);
+        return ResponseEntity.ok(marcas.get(0));
     }
 
 
