@@ -13,9 +13,12 @@ spring:
   dataSource:
     #postgresql
     driverClassName: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/MSDB
-    username: postgres
-    password: 7214
+    #url: jdbc:postgresql://localhost:54320/msdb
+    #username: postgres
+    #password: 7214
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
 
   #JPA
   jpa:

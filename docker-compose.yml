@@ -1,0 +1,27 @@
+version: "3.8"
+services:
+  postgres-db:
+    image: postgres
+    restart: always
+    volumes:
+      - ./data/db:/var/lib/postgres
+    environment:
+        POSTGRES_PASSWORD: 7214
+        POSTGRES_USER: postgres
+        POSTGRES_DB: msdb
+    ports:
+        - 54320:5432
+  ms_app:
+    container_name: ms_app
+    image: cfretamales/ms_app
+    ports:
+      - 8080:8080
+    environment:
+      - DB_URL=jdbc:postgresql://postgres-db:5432/msdb
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=7214
+    deploy:
+      restart_policy:
+        condition: on-failure
+    depends_on:
+        - postgres-db
