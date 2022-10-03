@@ -56,15 +56,14 @@ public class Marcas {
     }
 
     /**
-     * Funcion que dado marca de entrada y la marca de salida calcula la cantidad de horas trabajadas
-     * @param entrada - Marca de entrada
+     * Funcion que dado la marca de salida calcula la cantidad de horas trabajadas
      * @param salida - Marca de salida
      * @return - Cantidad de horas trabajadas
      */
-    public static int calcularHorasTrabajadas(Marcas entrada, Marcas salida) {
-        int horaEntradaInt = entrada.getHoras();
+    public int calcularHorasTrabajadas(Marcas salida) {
+        int horaEntradaInt = this.getHoras();
         int horaSalidaInt =  salida.getHoras();
-        int minutosEntradaInt = entrada.getMinutos();
+        int minutosEntradaInt = this.getMinutos();
         int minutosSalidaInt =  salida.getMinutos();
         int horasTrabajadas = horaSalidaInt - horaEntradaInt;
         int minutosTrabajados = minutosSalidaInt - minutosEntradaInt;
@@ -80,7 +79,7 @@ public class Marcas {
      * @param salida - Marca de salida
      * @return - Cantidad de horas extras trabajadas
      */
-    public static int calcularHorasExtras(Marcas entrada, Marcas salida) {
+    public int calcularHorasExtras(Marcas entrada, Marcas salida) {
         int horaEntradaInt = entrada.getHoras();
         int horaSalidaInt = salida.getHoras();
         int minutosEntradaInt = entrada.getMinutos();
@@ -98,13 +97,12 @@ public class Marcas {
     }
 
     /**
-     * Funcion que dado la marca de entrada determina cuantos minutos se ha retrasado
-     * @param entrada - Marca de entrada
+     * Funcion que determina cuantos minutos se ha retrasado
      * @return - Cantidad de minutos de retraso
      */
-    public static int calcularRetraso(Marcas entrada) {
-        int horaEntradaInt = entrada.getHoras();
-        int minutosEntradaInt = entrada.getMinutos();
+    public int calcularRetraso() {
+        int horaEntradaInt = this.getHoras();
+        int minutosEntradaInt = this.getMinutos();
         int minutosRetraso = 0;
         if (horaEntradaInt > 8) {
             minutosRetraso += (horaEntradaInt - 8) * 60;

@@ -9,7 +9,7 @@ import javax.persistence.*;
 import java.text.SimpleDateFormat;
 
 @Entity(name = "Empleados")
-@Table(name = "empleados")
+@Table(name = "empleados", uniqueConstraints = @UniqueConstraint(columnNames = "rut"))
 @Data @NoArgsConstructor @AllArgsConstructor @Builder
 public class Empleados {
 
@@ -28,6 +28,7 @@ public class Empleados {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private long id;
+
 
     @Column(name = "rut")
     private String rut;

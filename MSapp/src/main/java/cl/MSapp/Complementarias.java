@@ -3,6 +3,7 @@ package cl.MSapp;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
 
 // Metodos complementarios para el funcionamiento de la aplicacion
 // y asi no haya codigo repetido
@@ -34,6 +35,18 @@ public class Complementarias
      */
     public int getDia(){
         return Integer.parseInt(this.fecha.substring(8,10));
+    }
+
+    public int getAhno(String fecha){
+        return Integer.parseInt(fecha.substring(0,4));
+    }
+
+    public int getMes(String fecha) {
+        return Integer.parseInt(fecha.substring(5,7));
+    }
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
     }
 
     /* Calculos */
@@ -95,5 +108,26 @@ public class Complementarias
         }
         return false;
     }
+
+
+    /**
+     * Funcion que retorna un listado de dias habiles,dado un mes y un año
+     * @param mes - int
+     * @param anho - int
+     *        Formato: yyyy/mm/dd
+     *             Ejemplo: 2019/01/01
+     * @return listado de dias habiles (String)
+     */
+    public List<String> getDiasHabiles(int mes, int anho){
+        List<String> listado = null;
+        for(int i = 1; i <= 31; i++){
+            this.fecha = anho + "/" + mes + "/" + i;
+            if(this.esDiaHabil()){
+                listado.add(this.fecha);
+            }
+        }
+        return listado;
+    }
+
 
 }
