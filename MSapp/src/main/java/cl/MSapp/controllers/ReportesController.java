@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -24,5 +25,11 @@ public class ReportesController {
         ResponseEntity.ok(reportes);
         model.addAttribute("reportes", reportes);
         return "reportes";
+    }
+
+    @PostMapping
+    public String createReportes(Reportes reportes){
+        reportesService.createReportes(reportes);
+        return "redirect:/reportes";
     }
 }
