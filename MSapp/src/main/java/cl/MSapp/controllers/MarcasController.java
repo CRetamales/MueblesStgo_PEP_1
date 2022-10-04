@@ -35,7 +35,15 @@ public class MarcasController {
     @Autowired
     private MarcasService marcasService;
 
-    private static final String UPLOAD_DIR = "./src/main/resources/static/uploads/";
+
+    //Tener ruta actual
+    String UPLOAD_DIR = System.getProperty("user.dir");
+
+    //Se printea la ruta actual
+
+
+    //private static final String UPLOAD_DIR = "./src/main/resources/static/uploads/";
+
 
     /**
      * Muestra el formulario de carga de archivos
