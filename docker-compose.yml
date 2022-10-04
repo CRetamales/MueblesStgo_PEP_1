@@ -1,5 +1,15 @@
 version: "3.8"
 services:
+  nginx:
+    container_name: nginx-proxy
+    image: nginx
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+    depends_on:
+      - ms_app
   postgres-db:
     image: postgres
     restart: always

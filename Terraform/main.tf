@@ -35,7 +35,7 @@ provider "digitalocean" {
 }
 
 data "digitalocean_ssh_key" "mysshkey" {
-  name = "Home-Linux"
+  name = "Home-Windows"
 }
 
 resource "digitalocean_droplet" "web" {
