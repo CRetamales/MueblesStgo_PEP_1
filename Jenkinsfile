@@ -6,7 +6,7 @@ pipeline{
     stages {
         stage('Build JAR File'){
             steps{
-                checkout([$class: 'GitSCM', branches: [[name: '*/master'], [name: '*/develop']], extensions: [], userRemoteConfigs: [[credentialsId: '9fedc6b2-e7f4-4b11-b2ad-8958d09d4ccb', url: 'https://github.com/CRetamales/MueblesStgo']]])
+                checkout([$class: 'GitSCM', branches: [[name: '*/master'], [name: '*/develop']], extensions: [], userRemoteConfigs: [[credentialsId: 'Jenkins-Github', url: 'https://github.com/CRetamales/MueblesStgo']]])
                 dir('MSapp/')
                 {
                      sh 'gradle build -x test'
