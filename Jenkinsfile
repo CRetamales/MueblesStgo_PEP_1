@@ -16,7 +16,10 @@ pipeline{
         stage('Test'){
             steps{
                 //Junit test gradle
-                sh 'gradle test'
+                dir('MSapp/')
+                {
+                    sh 'gradle test'
+                }
                 //SonarQube
                 //No se pudo instalar en un servidor digital ocean
             }
